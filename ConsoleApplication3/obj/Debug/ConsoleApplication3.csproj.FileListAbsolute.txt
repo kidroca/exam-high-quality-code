@@ -1,0 +1,7 @@
+C:\Users\kidroca\Desktop\HQC Exam 2\Exam\ConsoleApplication3\bin\Debug\ConsoleApplication3.exe.config
+C:\Users\kidroca\Desktop\HQC Exam 2\Exam\ConsoleApplication3\bin\Debug\ConsoleApplication3.exe
+C:\Users\kidroca\Desktop\HQC Exam 2\Exam\ConsoleApplication3\bin\Debug\ConsoleApplication3.pdb
+C:\Users\kidroca\Desktop\HQC Exam 2\Exam\ConsoleApplication3\bin\Debug\ConsoleApplication3.exe.CodeAnalysisLog.xml
+C:\Users\kidroca\Desktop\HQC Exam 2\Exam\ConsoleApplication3\bin\Debug\ConsoleApplication3.exe.lastcodeanalysissucceeded
+C:\Users\kidroca\Desktop\HQC Exam 2\Exam\ConsoleApplication3\obj\Debug\ConsoleApplication3.exe
+C:\Users\kidroca\Desktop\HQC Exam 2\Exam\ConsoleApplication3\obj\Debug\ConsoleApplication3.pdb
