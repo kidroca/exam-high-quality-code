@@ -1,20 +1,16 @@
 ﻿namespace SchoolSystem.ConsoleApp
 {
-
-
-    // I am not responsible of this code.
-    // They made me write it, against my will.
-    // - Steven, October 2016, Telerik Academy
-    // P.S.: Send help!
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using System.Threading;
+    using Commands;
+    using DataModels;
 
-    class Startup
+    internal class Startup
     {
-        static void Main()
+        private static void Main()
         {
             // TODO: abstract at leest 2 mor provider like thiso ne
             var padhana = new ConsoleReaderProvider();
@@ -24,7 +20,7 @@
         }
     }
 
-    class ConsoleReaderProvider
+    internal class ConsoleReaderProvider
     {
         // TODO: make ConsoleReaderProvider implement IReader
         public string PadhanaLine()
@@ -33,7 +29,7 @@
         }
     }
 
-    class Engine
+    internal class Engine
     {
         // TODO: change param to IReader instead ConsoleReaderProvider
         // mujhe tum par vishvaas hai
@@ -81,7 +77,7 @@
 
         private ConsoleReaderProvider read;
 
-        void WriteLine(string m)
+        private void WriteLine(string m)
         {
             var p = m.Split();
             var s = string.Join(" ", p);

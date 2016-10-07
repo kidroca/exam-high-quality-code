@@ -1,4 +1,4 @@
-﻿namespace SchoolSystem.ConsoleApp
+﻿namespace SchoolSystem.DataModels
 {
     using System.Collections.Generic;
     using System.Linq;

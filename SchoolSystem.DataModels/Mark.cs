@@ -1,4 +1,4 @@
-﻿namespace SchoolSystem.ConsoleApp
+﻿namespace SchoolSystem.DataModels
 {
     public class Mark
     {

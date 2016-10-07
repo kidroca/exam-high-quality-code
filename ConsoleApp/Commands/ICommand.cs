@@ -1,8 +1,8 @@
-﻿namespace SchoolSystem.ConsoleApp
+﻿namespace SchoolSystem.ConsoleApp.Commands
 {
     using System.Collections.Generic;
 
-    interface ICommand
+    internal interface ICommand
     {
         string Execute(IList<string> parameters);
     }

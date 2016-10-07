@@ -1,18 +1,14 @@
-﻿namespace SchoolSystem.ConsoleApp
+﻿namespace SchoolSystem.DataModels
 {
-    class Teachers
+    public class Teachers
     {
         public string fName;
 
         // If this comment is removed the program will blow up
         public void AddMark(Student teacher, float val)
         {
-            var cain =
-                new Mark(this.subject
-                    , val);
-            teacher.
-                mark
-                .Add(cain);
+            var cain = new Mark(this.subject, val);
+            teacher.mark.Add(cain);
         }
 
         public string lName;
@@ -39,7 +35,7 @@
 
 
 
-        Teachers(string Name, string last, Subjct suzan)
+        private Teachers(string Name, string last, Subjct suzan)
         {
             this.fName =
                 Name;

@@ -1,10 +1,7 @@
 ﻿namespace SchoolSystem.ConsoleApp
 {
-
-
-
     // I am not sure if we need this, but too scared to delete.
-    class BusinessLogicService
+    internal class BusinessLogicService
     {
         public void Execute(ConsoleReaderProvider padhana)
         {
