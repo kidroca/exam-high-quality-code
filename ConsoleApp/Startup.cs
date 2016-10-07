@@ -1,8 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Threading;
-
-namespace ConsoleApplication3
+﻿namespace SchoolSystem.ConsoleApp
 {
 
 
@@ -10,9 +6,11 @@ namespace ConsoleApplication3
     // They made me write it, against my will.
     // - Steven, October 2016, Telerik Academy
     // P.S.: Send help!
-
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
+    using System.Threading;
 
     class Startup
     {

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace ConsoleApplication3
+﻿namespace SchoolSystem.ConsoleApp
 {
+    using System.Collections.Generic;
+
     interface ICommand
     {
         string Execute(IList<string> parameters);
