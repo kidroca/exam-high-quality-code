@@ -48,13 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ErrorMessages.cs" />
+    <Compile Include="Constants\InputStrings.cs" />
     <Compile Include="Core\Commands\CreateStudentCommand.cs" />
     <Compile Include="Core\Commands\CreateTeacherCommand.cs" />
-    <Compile Include="Core\Commands\ICommand.cs" />
+    <Compile Include="Core\Commands\BaseCommand.cs" />
+    <Compile Include="Core\Commands\RemoveTeacherCommand.cs" />
+    <Compile Include="Core\DataStore.cs" />
+    <Compile Include="Core\Repository.cs" />
+    <Compile Include="Core\Interfaces\ICommand.cs" />
     <Compile Include="Core\Commands\RemoveStudentCommand.cs" />
     <Compile Include="Core\Commands\StudentListMarksCommand.cs" />
     <Compile Include="Core\Commands\TeacherAddMarkCommand.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Interfaces\IDataStore.cs" />
+    <Compile Include="Core\Interfaces\IRepository.cs" />
     <Compile Include="Core\UserInterface\ConsoleReader.cs" />
     <Compile Include="Core\UserInterface\ConsoleWriter.cs" />
     <Compile Include="Core\UserInterface\IReader.cs" />

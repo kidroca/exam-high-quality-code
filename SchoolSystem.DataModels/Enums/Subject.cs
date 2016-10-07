@@ -1,6 +1,6 @@
-﻿namespace SchoolSystem.DataModels
+﻿namespace SchoolSystem.DataModels.Enums
 {
-    public enum Subjct
+    public enum Subject
     {
         Bulgarian,
         English,

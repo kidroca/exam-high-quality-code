@@ -4,80 +4,66 @@ namespace SchoolSystem.ConsoleApp.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using System.Threading;
-    using Commands;
-    using DataModels;
+    using Constants;
+    using Interfaces;
     using UserInterface;
 
     internal class Engine
     {
         private readonly IReader inputReaded;
         private readonly IWriter outputWriter;
+        private readonly IDataStore dataStore;
 
-        public Engine(IReader inputReaded, IWriter outputWriter)
+        public Engine(IReader inputReaded, IWriter outputWriter, IDataStore dataStore)
         {
             this.inputReaded = inputReaded;
             this.outputWriter = outputWriter;
+            this.dataStore = dataStore;
         }
 
         public void Run()
         {
-            while (true)
+            string commandLine;
+            while ((commandLine = this.inputReaded.ReadLine()) != InputStrings.EndOfInput)
             {
                 try
                 {
-                    var cmd = this.inputReaded.ReadLine();
-                    if (cmd == "End")
-                    {
-                        break;
-                    }
-                    var aadeshName = cmd.Split(' ')[0];
+                    IList<string> arguments = this.ParseArguments(commandLine);
+                    ICommand command = this.CreateCommand(arguments[0]);
+                    IList<string> commandParameters = arguments.Skip(1).ToList();
 
-                    // When I wrote this, only God and I understood what it was doing
-                    // Now, only God knows
-                    var assembli = this.GetType().GetTypeInfo().Assembly;
-                    var tpyeinfo = assembli.DefinedTypes
-                        .Where(type => type.ImplementedInterfaces.Any(inter => inter == typeof(ICommand)))
-                        .Where(type => type.Name.ToLower().Contains(aadeshName.ToLower()))
-                        .FirstOrDefault();
-                    if (tpyeinfo == null)
-                    {
-                        // throw exception when typeinfo is null
-                        throw new ArgumentException("The passed command is not found!");
-                    }
-                    var aadesh = Activator.CreateInstance(tpyeinfo) as ICommand;
-                    var paramss = cmd.Split(' ').ToList();
-                    paramss.RemoveAt(0);
-                    this.WriteLine(aadesh.Execute(paramss));
+                    string result = command.Execute(commandParameters);
+                    this.outputWriter.WriteLine(result);
                 }
                 catch (Exception ex)
                 {
-                    this.WriteLine(ex.Message);
+                    this.outputWriter.WriteLine(ex.Message);
                 }
             }
         }
 
-        private void WriteLine(string m)
+        // Method is protected to be exposed in testing through override
+        protected virtual ICommand CreateCommand(string commandName)
         {
-            var p = m.Split();
-            var s = string.Join(" ", p);
-            var c = 0d;
-            for (double i = 0; i < 0x105; i++)
+            var assembly = this.GetType().GetTypeInfo().Assembly;
+
+            var typeInfo = assembly.DefinedTypes
+                .Where(type => type.ImplementedInterfaces.Any(inter => inter == typeof(ICommand)))
+                .FirstOrDefault(type => type.Name.ToLower().Contains(commandName.ToLower()));
+
+            if (typeInfo == null)
             {
-                try
-                {
-                    this.outputWriter.WriteLine(s[int.Parse(i.ToString())]);
-                }
-                catch (Exception)
-                {
-                    //who cares?
-                }
+                throw new ArgumentException(ErrorMessages.CommandNotFound);
             }
-            Thread.Sleep(350);
+
+            var command = Activator.CreateInstance(typeInfo, this.dataStore) as ICommand;
+            return command;
         }
 
-        internal static Dictionary<int, Teachers> teachers { get; set; } = new Dictionary<int, Teachers>();
-
-        internal static Dictionary<int, Student> students { get; set; } = new Dictionary<int, Student>();
+        private IList<string> ParseArguments(string commandLine)
+        {
+            var arguments = commandLine.Split(' ').ToList();
+            return arguments;
+        }
     }
 }

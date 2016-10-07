@@ -1,17 +1,39 @@
 namespace SchoolSystem.ConsoleApp.Core.Commands
 {
+    using System;
     using System.Collections.Generic;
-    using Core;
     using DataModels;
+    using DataModels.Enums;
+    using DataModels.Models;
+    using Interfaces;
 
-    internal class CreateStudentCommand
+    internal class CreateStudentCommand : BaseCommand, ICommand
     {
-        public static int id = 0;
-
-        public string Execute(IList<string> para)
+        public CreateStudentCommand(IDataStore dataStore)
+            : base(dataStore)
         {
-            Engine.students.Add(id, new Student(para[0], para[1], (Grade)int.Parse(para[2])));
-            return $"A new student with name {para[0]} {para[1]}, grade {(Grade)int.Parse(para[2])} and ID {id++} was created.";
+        }
+
+        public override string Execute(IList<string> arguments)
+        {
+            string firstName = arguments[0];
+            string lastName = arguments[1];
+            int gradeValue = int.Parse(arguments[2]);
+            this.ValidateGrade(gradeValue);
+
+            Grade grade = (Grade)gradeValue;
+            var student = new Student(firstName, lastName, grade);
+            int id = this.DataStore.Students.Add(student);
+
+            return $"A new student with name {firstName} {lastName}, grade {grade} and ID {id} was created.";
+        }
+
+        private void ValidateGrade(int grade)
+        {
+            if (grade < Constraints.MinGrade || grade > Constraints.MaxGrade)
+            {
+                throw new ArgumentException("Invalid Grade");
+            }
         }
     }
 }

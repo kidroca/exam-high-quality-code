@@ -15,7 +15,8 @@
         {
             var inputReaded = new ConsoleReader();
             var outputWriter = new ConsoleWriter();
-            var engine = new Engine(inputReaded, outputWriter);
+            var dataStore = new DataStore();
+            var engine = new Engine(inputReaded, outputWriter, dataStore);
 
             return engine;
         }

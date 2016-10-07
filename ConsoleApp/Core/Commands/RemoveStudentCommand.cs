@@ -1,14 +1,21 @@
 namespace SchoolSystem.ConsoleApp.Core.Commands
 {
     using System.Collections.Generic;
-    using Core;
+    using Interfaces;
 
-    public class RemoveStudentCommand : ICommand
+    public class RemoveStudentCommand : BaseCommand, ICommand
     {
-        public string Execute(IList<string> paras)
+        public RemoveStudentCommand(IDataStore dataStore)
+            : base(dataStore)
         {
-            Engine.students.Remove(int.Parse(paras[0]));
-            return $"Student with ID {int.Parse(paras[0])} was sucessfully removed.";
+        }
+
+        public override string Execute(IList<string> arguments)
+        {
+            int id = int.Parse(arguments[0]);
+            this.DataStore.Students.Remove(id);
+
+            return $"Student with ID {id} was sucessfully removed.";
         }
     }
 }
