@@ -1,6 +1,7 @@
-namespace SchoolSystem.ConsoleApp.Commands
+namespace SchoolSystem.ConsoleApp.Core.Commands
 {
     using System.Collections.Generic;
+    using Core;
 
     public class RemoveStudentCommand : ICommand
     {
